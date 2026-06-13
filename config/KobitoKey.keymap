@@ -88,10 +88,10 @@
 
         layer_5 {
             bindings = <
-&trans  &kp RA(RIGHT)  &trans  &trans            &kp RG(V)    &kp N7    &kp N8   &kp N9  &kp FSLH   &trans
-&trans  &kp RA(LEFT)   &trans  &kp RS(RC(SEMI))  &kp RC(C)    &kp N4    &kp N5   &kp N6  &kp MINUS  &kp MINUS
-&trans  &trans         &trans  &kp RS(RC(N))     &kp RC(V)    &kp N1    &kp N2   &kp N3  &kp N0     &trans
-&trans  &trans         &trans  &kp RA(TAB)       &kp RG(TAB)  &kp HOME  &kp END  &trans  &trans     &kp ESC
+&trans  &kp RA(RIGHT)  &trans  &trans            &kp RG(V)    &kp N7           &kp N8           &kp N9           &kp FSLH         &trans
+&trans  &kp RA(LEFT)   &trans  &kp RS(RC(SEMI))  &kp RC(C)    &kp KP_NUMBER_4  &kp N5           &kp N6           &kp PLUS         &kp MINUS
+&trans  &trans         &trans  &kp RS(RC(N))     &kp RC(V)    &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp KP_NUMBER_0  &trans
+&trans  &trans         &trans  &kp RA(TAB)       &kp RG(TAB)  &kp HOME         &kp END          &trans           &trans           &kp ESC
             >;
         };
     };
