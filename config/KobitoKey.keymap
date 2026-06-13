@@ -39,7 +39,7 @@
         default_layer {
             bindings = <
 &kp Q             &kp W     &kp E               &kp R          &kp T                 &kp Y      &kp U        &kp I          &kp O      &kp P
-&mt LEFT_SHIFT A  &lt 5 S   &lt 5 D             &lt 2 F        &kp G                 &kp H      &kp J        &kp K          &kp L      &mt RSHIFT MINUS
+&mt LEFT_SHIFT A  &lt 4 S   &lt 5 D             &lt 2 F        &kp G                 &kp H      &kp J        &kp K          &kp L      &mt RSHIFT MINUS
 &mt LEFT_SHIFT Z  &kp X     &kp C               &kp V          &kp B                 &kp N      &kp M        &kp COMMA      &kp DOT    &mt LEFT_SHIFT SLASH
 &kp LEFT_GUI      &kp LALT  &mt LCTRL LEFT_GUI  &mt SPACE TAB  &mt LEFT_SHIFT GRAVE  &lt 2 RET  &lt 1 SPACE  &kp RIGHT_GUI  &kp RSHFT  &mt LALT SLASH
             >;
@@ -77,8 +77,8 @@
 
         layer4 {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&kp N1  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&kp N1  &kp S   &trans  &kp U   &kp L   &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
             >;
