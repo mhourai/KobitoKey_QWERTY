@@ -71,7 +71,7 @@
 &trans     &trans  &trans            &trans    &trans  &trans  &mkp MB1  &mkp MB3  &mkp MB2  &trans
 &trans     &trans  &trans            &trans    &trans  &trans  &mkp MB1  &mkp MB3  &mkp MB2  &trans
 &trans     &trans  &trans            &trans    &trans  &trans  &trans    &trans    &trans    &trans
-&kp LSHFT  &trans  &kp LEFT_CONTROL  &kp LALT  &to 0   &trans  &trans    &trans    &to 0     &kp RALT
+&kp LSHFT  &trans  &kp LEFT_CONTROL  &kp LALT  &to 0   &trans  &trans    &trans    &to 0     &to 0
             >;
         };
 
