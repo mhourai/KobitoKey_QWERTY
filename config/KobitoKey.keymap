@@ -94,5 +94,16 @@
 &trans   &trans         &trans  &kp RA(TAB)       &kp RG(TAB)    &kp HOME         &kp END          &trans           &trans           &kp ESC
             >;
         };
+
+        layer_6 {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+            >;
+
+            label = "scroll";
+        };
     };
 };
