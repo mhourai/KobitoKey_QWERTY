@@ -68,19 +68,19 @@
         layer3 {
             label = "MOUSE";
             bindings = <
-&trans     &trans  &trans            &trans    &trans  &trans  &mkp MB1  &mkp MB3  &mkp MB2  &trans
-&trans     &trans  &trans            &trans    &trans  &trans  &mkp MB1  &mkp MB3  &mkp MB2  &trans
-&trans     &trans  &trans            &trans    &trans  &trans  &trans    &trans    &trans    &trans
-&kp LSHFT  &trans  &kp LEFT_CONTROL  &kp LALT  &to 0   &trans  &trans    &trans    &to 0     &to 0
+&trans     &trans  &trans            &trans    &trans  &trans  &trans  &trans    &trans    &trans
+&trans     &trans  &trans            &trans    &trans  &trans  &trans  &mkp MB1  &mkp MB2  &trans
+&trans     &trans  &trans            &trans    &trans  &trans  &trans  &trans    &trans    &trans
+&kp LSHFT  &trans  &kp LEFT_CONTROL  &kp LALT  &to 0   &trans  &trans  &trans    &to 0     &to 0
             >;
         };
 
         layer4 {
             bindings = <
-&kp N1  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&kp N1  &kp S   &trans  &kp U   &kp L   &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&kp N1  &trans  &trans  &trans  &trans  &trans  &kp F1  &kp F2   &kp F3   &kp F4
+&kp N1  &kp S   &trans  &kp U   &kp L   &trans  &kp F5  &kp F6   &kp F7   &kp F8
+&trans  &trans  &trans  &trans  &trans  &trans  &kp F9  &kp F10  &kp F11  &kp F12
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans   &trans   &trans
             >;
 
             label = "shortcut";
@@ -88,10 +88,10 @@
 
         layer_5 {
             bindings = <
-&kp ESC  &kp RA(RIGHT)  &trans  &trans            &kp RG(V)    &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp FSLH         &kp BSPC
-&trans   &kp RA(LEFT)   &trans  &kp RS(RC(SEMI))  &kp RC(C)    &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp PLUS         &kp MINUS
-&trans   &trans         &trans  &kp RS(RC(N))     &kp RC(V)    &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp KP_NUMBER_0  &trans
-&trans   &trans         &trans  &kp RA(TAB)       &kp RG(TAB)  &kp HOME         &kp END          &trans           &trans           &kp ESC
+&kp ESC  &kp RA(RIGHT)  &trans  &kp RC(T)         &kp RC(T)      &kp SLASH        &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp BSPC
+&trans   &kp RA(LEFT)   &trans  &kp RS(RC(SEMI))  &kp F2         &kp PLUS         &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp MINUS
+&trans   &trans         &trans  &kp RG(V)         &kp RC(RS(N))  &kp KP_NUMBER_0  &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp DOT
+&trans   &trans         &trans  &kp RA(TAB)       &kp RG(TAB)    &kp HOME         &kp END          &trans           &trans           &kp ESC
             >;
         };
     };
