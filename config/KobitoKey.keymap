@@ -38,20 +38,20 @@
 
         default_layer {
             bindings = <
-&kp Q             &kp W     &kp E               &kp R          &kp T                 &kp Y      &kp U        &kp I          &kp O      &kp P
-&mt LEFT_SHIFT A  &lt 4 S   &lt 5 D             &lt 2 F        &kp G                 &kp H      &kp J        &kp K          &kp L      &mt RSHIFT MINUS
-&mt LEFT_SHIFT Z  &kp X     &kp C               &kp V          &kp B                 &kp N      &kp M        &kp COMMA      &kp DOT    &mt LEFT_SHIFT SLASH
-&kp LEFT_GUI      &kp LALT  &mt LCTRL LEFT_GUI  &mt SPACE TAB  &mt LEFT_SHIFT GRAVE  &lt 2 RET  &lt 1 SPACE  &kp RIGHT_GUI  &kp RSHFT  &mt LALT SLASH
+&kp Q             &kp W     &kp E               &kp R          &kp T                 &kp Y      &kp U        &kp I       &kp O      &kp P
+&mt LEFT_SHIFT A  &lt 4 S   &lt 5 D             &lt 2 F        &kp G                 &kp H      &kp J        &kp K       &kp L      &mt RSHIFT MINUS
+&mt LEFT_SHIFT Z  &kp X     &kp C               &kp V          &kp B                 &kp N      &kp M        &kp COMMA   &kp DOT    &mt LEFT_SHIFT SLASH
+&kp LEFT_GUI      &kp LALT  &mt LCTRL LEFT_GUI  &mt SPACE TAB  &mt LEFT_SHIFT GRAVE  &lt 2 RET  &lt 1 SPACE  &kp DELETE  &kp RSHFT  &mt LALT SLASH
             >;
         };
 
         layer1 {
             label = "NUMBER";
             bindings = <
-&kp ESC   &kp EXCL         &kp AT     &kp HASH           &kp DOLLAR            &kp KP_NUMLOCK  &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp BACKSPACE
-&kp AMPS  &kp PERCENT      &kp CARET  &kp ASTRK          &kp LEFT_PARENTHESIS  &kp PLUS        &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp MINUS
-&kp PLUS  &kp RIGHT_BRACE  &kp PIPE   &kp RIGHT_BRACKET  &kp BACKSLASH         &kp ASTRK       &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp KP_NUMBER_0
-&trans    &trans           &trans     &kp LSHFT          &trans                &kp ENTER       &kp SPACE        &trans           &trans           &kp SLASH
+&kp ESC   &kp EXCL         &kp AT     &kp HASH           &kp DOLLAR            &kp ASTRK  &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp BACKSPACE
+&kp AMPS  &kp PERCENT      &kp CARET  &kp ASTRK          &kp LEFT_PARENTHESIS  &kp PLUS   &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp MINUS
+&kp PLUS  &kp RIGHT_BRACE  &kp PIPE   &kp RIGHT_BRACKET  &kp BACKSLASH         &kp DOT    &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp KP_NUMBER_0
+&trans    &trans           &trans     &kp LSHFT          &trans                &kp ENTER  &kp SPACE        &trans           &trans           &kp SLASH
             >;
         };
 
