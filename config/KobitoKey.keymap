@@ -4,7 +4,57 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
 
+#define MOUSE 3
+
+/* クリック時にオートマウスレイヤーのタイムアウトを延長する */
+&mkp_input_listener {
+    input-processors = <&zip_temp_layer MOUSE 10000>;
+};
+
 / {
+    macros {
+        /* AML(layer MOUSE) を強制的に解除するマクロ */
+        exit_AML: exit_AML {
+            compatible = "zmk,behavior-macro";
+            wait-ms = <0>;
+            tap-ms = <0>;
+            #binding-cells = <0>;
+            bindings = <&tog_off MOUSE>;
+            label = "exit_AML";
+        };
+
+        /* kpを送ったあとAMLを抜けるマクロ */
+        kp_exit_AML: kp_exit_AML {
+            compatible = "zmk,behavior-macro-one-param";
+            wait-ms = <0>;
+            tap-ms = <0>;
+            #binding-cells = <1>;
+            bindings = <&macro_param_1to1 &kp MACRO_PLACEHOLDER &exit_AML>;
+            label = "KP_exit_AML";
+        };
+    };
+
+    behaviors {
+        /* レイヤーをOFF方向にのみトグルするbehavior */
+        tog_off: toggle_layer_off {
+            compatible = "zmk,behavior-toggle-layer";
+            #binding-cells = <1>;
+            display-name = "Toggle Layer Off";
+            toggle-mode = "off";
+        };
+
+        /* ホールド時はkp（モディファイア）、タップ時はkp+AML解除のmt */
+        mt_aml: mt_exit_AML_on_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MT_EXIT_AML_ON_TAP";
+            bindings = <&kp>, <&kp_exit_AML>;
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            flavor = "balanced";
+        };
+    };
+
     combos {
         compatible = "zmk,combos";
 
@@ -38,10 +88,10 @@
 
         default_layer {
             bindings = <
-&kp Q             &kp W     &kp E               &kp R          &kp T                 &kp Y      &kp U        &kp I       &kp O      &kp P
-&mt LEFT_SHIFT A  &lt 4 S   &lt 5 D             &lt 2 F        &kp G                 &kp H      &kp J        &kp K       &kp L      &mt RSHIFT MINUS
-&mt LEFT_SHIFT Z  &kp X     &kp C               &kp V          &kp B                 &kp N      &kp M        &kp COMMA   &kp DOT    &mt LEFT_SHIFT SLASH
-&kp LEFT_GUI      &kp LALT  &mt LCTRL LEFT_GUI  &mt SPACE TAB  &mt LEFT_SHIFT GRAVE  &lt 2 RET  &lt 1 SPACE  &kp DELETE  &kp RSHFT  &mt LALT SLASH
+&kp Q                &kp W     &kp E               &kp R          &kp T                    &kp Y      &kp U        &kp I          &kp O      &kp P
+&mt_aml LEFT_SHIFT A &lt 4 S   &lt 5 D             &lt 2 F        &kp G                    &kp H      &kp J        &kp K          &kp L      &mt_aml RSHIFT MINUS
+&mt_aml LEFT_SHIFT Z &kp X     &kp C               &kp V          &kp B                    &kp N      &kp M        &kp COMMA      &kp DOT    &mt_aml LEFT_SHIFT SLASH
+&kp LEFT_GUI         &kp LALT  &mt LCTRL LEFT_GUI  &mt SPACE TAB  &mt_aml LEFT_SHIFT GRAVE &lt 2 RET  &lt 1 SPACE  &lt 6 DELETE   &kp RSHFT  &mt LALT SLASH
             >;
         };
 
