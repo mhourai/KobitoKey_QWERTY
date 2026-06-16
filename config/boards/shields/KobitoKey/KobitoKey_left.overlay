@@ -69,7 +69,7 @@
     input-processors =
             <&sensor_rotation_left>,
             <&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>, /* 軸入替: 横movement→縦スクロール */
-            <&zip_x_scaler 0 1>,  /* 入替後のX(=元の縦)を無効化 */
+            <&zip_x_scaler 1 15>, /* 入替後のX(=元の上下movement)→横スクロール有効化 */
             <&zip_y_scaler 1 15>, /* 入替後のY(=元の横)を縦スクロールに使用 */
             <&zip_xy_to_scroll_mapper>,
             <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>,
@@ -97,8 +97,8 @@
         layers = <6>;
         input-processors =
             <&sensor_rotation_right>,
-            <&zip_x_scaler 0 1>,      /* 横スクロール無効（縦のみ） */
-            <&zip_y_scaler 1 80>,     /* 縦スクロール速度: 除数が大きいほど遅い */
+            <&zip_x_scaler 1 60>,     /* 横スクロール有効。除数が大きいほど遅い */
+            <&zip_y_scaler 1 60>,     /* 縦スクロール速度: 除数が大きいほど遅い */
             <&zip_xy_to_scroll_mapper>,
             <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>; /* スクロール方向を反転 */
     };
