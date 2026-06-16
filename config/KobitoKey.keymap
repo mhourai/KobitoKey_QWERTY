@@ -8,18 +8,6 @@
     combos {
         compatible = "zmk,combos";
 
-        combo_eisu {
-            timeout-ms = <50>;
-            key-positions = <12 13>;
-            bindings = <&kp LANG2>;
-        };
-
-        combo_kana {
-            timeout-ms = <50>;
-            key-positions = <16 17>;
-            bindings = <&kp LANG1>;
-        };
-
         combo_esc {
             timeout-ms = <50>;
             key-positions = <0 1>;
@@ -30,6 +18,11 @@
             timeout-ms = <50>;
             key-positions = <10 11>;
             bindings = <&kp TAB>;
+        };
+
+        scrool {
+            bindings = <&mo 6>;
+            key-positions = <17 18>;
         };
     };
 
