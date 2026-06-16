@@ -7,13 +7,13 @@
 #define MOUSE 3
 
 /* クリック時にオートマウスレイヤーのタイムアウトを延長する */
-&mkp_input_listener {
-    input-processors = <&zip_temp_layer MOUSE 10000>;
-};
+
+&mkp_input_listener { input-processors = <&zip_temp_layer MOUSE 10000>; };
 
 / {
     macros {
         /* AML(layer MOUSE) を強制的に解除するマクロ */
+
         exit_AML: exit_AML {
             compatible = "zmk,behavior-macro";
             wait-ms = <0>;
@@ -24,6 +24,7 @@
         };
 
         /* kpを送ったあとAMLを抜けるマクロ */
+
         kp_exit_AML: kp_exit_AML {
             compatible = "zmk,behavior-macro-one-param";
             wait-ms = <0>;
@@ -36,6 +37,7 @@
 
     behaviors {
         /* レイヤーをOFF方向にのみトグルするbehavior */
+
         tog_off: toggle_layer_off {
             compatible = "zmk,behavior-toggle-layer";
             #binding-cells = <1>;
@@ -44,10 +46,12 @@
         };
 
         /* ホールド時はkp（モディファイア）、タップ時はkp+AML解除のmt */
+
         mt_aml: mt_exit_AML_on_tap {
             compatible = "zmk,behavior-hold-tap";
             label = "MT_EXIT_AML_ON_TAP";
             bindings = <&kp>, <&kp_exit_AML>;
+
             #binding-cells = <2>;
             tapping-term-ms = <200>;
             quick-tap-ms = <200>;
@@ -57,18 +61,6 @@
 
     combos {
         compatible = "zmk,combos";
-
-        combo_eisu {
-            timeout-ms = <50>;
-            key-positions = <12 13>;
-            bindings = <&kp LANG2>;
-        };
-
-        combo_kana {
-            timeout-ms = <50>;
-            key-positions = <16 17>;
-            bindings = <&kp LANG1>;
-        };
 
         combo_esc {
             timeout-ms = <50>;
@@ -81,6 +73,11 @@
             key-positions = <10 11>;
             bindings = <&kp TAB>;
         };
+
+        scroll {
+            bindings = <&mo 6>;
+            key-positions = <17 18>;
+        };
     };
 
     keymap {
@@ -88,10 +85,10 @@
 
         default_layer {
             bindings = <
-&kp Q                &kp W     &kp E               &kp R          &kp T                    &kp Y      &kp U        &kp I          &kp O      &kp P
-&mt_aml LEFT_SHIFT A &lt 4 S   &lt 5 D             &lt 2 F        &kp G                    &kp H      &kp J        &kp K          &kp L      &mt_aml RSHIFT MINUS
-&mt_aml LEFT_SHIFT Z &kp X     &kp C               &kp V          &kp B                    &kp N      &kp M        &kp COMMA      &kp DOT    &mt_aml LEFT_SHIFT SLASH
-&kp LEFT_GUI         &kp LALT  &mt LCTRL LEFT_GUI  &mt SPACE TAB  &mt_aml LEFT_SHIFT GRAVE &lt 2 RET  &lt 1 SPACE  &lt 6 DELETE   &kp RSHFT  &mt LALT SLASH
+&kp Q                 &kp W     &kp E               &kp R          &kp T                     &kp Y      &kp U        &kp I         &kp O      &kp P
+&mt_aml LEFT_SHIFT A  &lt 4 S   &lt 5 D             &lt 2 F        &kp G                     &kp H      &kp J        &kp K         &kp L      &mt_aml RSHIFT MINUS
+&mt_aml LEFT_SHIFT Z  &kp X     &kp C               &kp V          &kp B                     &kp N      &kp M        &kp COMMA     &kp DOT    &mt_aml LEFT_SHIFT SLASH
+&kp LEFT_GUI          &kp LALT  &mt LCTRL LEFT_GUI  &mt SPACE TAB  &mt_aml LEFT_SHIFT GRAVE  &lt 2 RET  &lt 1 SPACE  &lt 6 DELETE  &kp RSHFT  &mt LALT SLASH
             >;
         };
 
