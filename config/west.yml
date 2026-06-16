@@ -7,7 +7,9 @@ manifest:
     - name: hsgw
       url-base: https://github.com/hsgw
     - name: caksoylar  # <-- led
-      url-base: https://github.com/caksoylar  
+      url-base: https://github.com/caksoylar
+    - name: prospector  # <-- prospector status display
+      url-base: https://github.com/t-ogura
 
   projects:
     # ZMK 本体。公式の app/west.yml を取り込む
@@ -32,6 +34,12 @@ manifest:
     - name: zmk-rgbled-widget  # <-- led
       remote: caksoylar
       revision: v0.3
-      
+
+    # Prospector（BLEステータス表示ドングル用モジュール）
+    - name: prospector-zmk-module
+      remote: prospector
+      revision: v2.2.1
+      path: modules/prospector-zmk-module
+
   self:
     path: config
