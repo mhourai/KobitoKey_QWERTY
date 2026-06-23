@@ -10,6 +10,8 @@ manifest:
       url-base: https://github.com/caksoylar
     - name: prospector  # <-- prospector status display
       url-base: https://github.com/t-ogura
+    - name: oleksandrmaslov  # <-- scroll/pointer acceleration
+      url-base: https://github.com/oleksandrmaslov
 
   projects:
     # ZMK 本体。公式の app/west.yml を取り込む
@@ -40,6 +42,11 @@ manifest:
       remote: prospector
       revision: v2.2.1
       path: modules/prospector-zmk-module
+
+    # スクロール/ポインタ加速（入力プロセッサ）
+    - name: zmk-pointing-acceleration
+      remote: oleksandrmaslov
+      revision: main
 
   self:
     path: config

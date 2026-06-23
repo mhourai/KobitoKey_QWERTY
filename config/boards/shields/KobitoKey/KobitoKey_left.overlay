@@ -60,6 +60,20 @@
         status = "okay";
         rotation-angle = <24>;
     };
+
+    /* 右トラボのスクロール用 加速プロセッサ（速く動かすほど倍率が上がる） */
+    scroll_accel: scroll_accel {
+        compatible = "zmk,input-processor-acceleration";
+        #input-processor-cells = <0>;
+        status = "okay";
+        input-type = <INPUT_EV_REL>;
+        min-factor = <1000>;            /* 低速時の倍率(=1.0倍、減速しない) */
+        max-factor = <3000>;            /* 高速時の最大倍率(=3.0倍) */
+        speed-threshold = <1000>;       /* これ以上の速度で加速開始(counts/sec) */
+        speed-max = <6000>;             /* この速度で最大倍率に到達 */
+        acceleration-exponent = <2>;    /* 1=線形 2=二次 3=三次 */
+        track-remainders;               /* 端数を持ち越して滑らかに */
+    };
 };
 
 &tb_left_listener {
@@ -97,6 +111,7 @@
         layers = <6>;
         input-processors =
             <&sensor_rotation_right>,
+            <&scroll_accel>,          /* 速く動かすほど速くスクロール（加速） */
             <&zip_x_scaler 1 46>,     /* 横スクロール有効。除数が大きいほど遅い */
             <&zip_y_scaler 1 46>,     /* 縦スクロール速度: 除数が大きいほど遅い(60→46で約+30%) */
             <&zip_xy_to_scroll_mapper>,
