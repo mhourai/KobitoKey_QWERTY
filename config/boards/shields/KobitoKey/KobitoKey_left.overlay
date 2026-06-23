@@ -51,7 +51,7 @@
         compatible = "zmk,input-processor-sensor-rotation";
         status = "okay";
         #input-processor-cells = <0>;
-        rotation-angle = <(-24)>;
+        rotation-angle = <(-69)>; /* -24 から 45度回転を追加 */
     };
 
     sensor_rotation_right: sensor-rotation-right {
@@ -97,8 +97,8 @@
         layers = <6>;
         input-processors =
             <&sensor_rotation_right>,
-            <&zip_x_scaler 1 60>,     /* 横スクロール有効。除数が大きいほど遅い */
-            <&zip_y_scaler 1 60>,     /* 縦スクロール速度: 除数が大きいほど遅い */
+            <&zip_x_scaler 1 46>,     /* 横スクロール有効。除数が大きいほど遅い */
+            <&zip_y_scaler 1 46>,     /* 縦スクロール速度: 除数が大きいほど遅い(60→46で約+30%) */
             <&zip_xy_to_scroll_mapper>,
             <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>; /* スクロール方向を反転 */
     };
