@@ -74,6 +74,20 @@
         acceleration-exponent = <2>;    /* 1=線形 2=二次 3=三次 */
         track-remainders;               /* 端数を持ち越して滑らかに */
     };
+
+    /* 左トラボのスクロール用 加速プロセッサ（右と同じ初期値・設定は独立管理） */
+    scroll_accel_left: scroll_accel_left {
+        compatible = "zmk,input-processor-acceleration";
+        #input-processor-cells = <0>;
+        status = "okay";
+        input-type = <INPUT_EV_REL>;
+        min-factor = <1000>;            /* 低速時の倍率(=1.0倍、減速しない) */
+        max-factor = <3000>;            /* 高速時の最大倍率(=3.0倍) */
+        speed-threshold = <1000>;       /* これ以上の速度で加速開始(counts/sec) */
+        speed-max = <6000>;             /* この速度で最大倍率に到達 */
+        acceleration-exponent = <2>;    /* 1=線形 2=二次 3=三次 */
+        track-remainders;               /* 端数を持ち越して滑らかに */
+    };
 };
 
 &tb_left_listener {
@@ -83,6 +97,7 @@
     input-processors =
             <&sensor_rotation_left>,
             <&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>, /* 軸入替: 横movement→縦スクロール */
+            <&scroll_accel_left>, /* 速く動かすほど速くスクロール（左用・独立設定） */
             <&zip_x_scaler 1 15>, /* 入替後のX(=元の上下movement)→横スクロール有効化 */
             <&zip_y_scaler 1 15>, /* 入替後のY(=元の横)を縦スクロールに使用 */
             <&zip_xy_to_scroll_mapper>,
