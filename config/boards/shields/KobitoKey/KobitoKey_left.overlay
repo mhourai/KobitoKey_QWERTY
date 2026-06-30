@@ -127,8 +127,8 @@
         input-processors =
             <&sensor_rotation_right>,
             <&scroll_accel>,          /* 速く動かすほど速くスクロール（加速） */
-            <&zip_x_scaler 1 64>,     /* 横スクロール有効。CPI 1000→1400化に合わせ除数46→64で速度維持 */
-            <&zip_y_scaler 1 64>,     /* 縦スクロール速度（同上） */
+            <&zip_x_scaler 1 55>,     /* 横スクロール有効。CPI 1200に合わせ除数55でスクロール速度維持 */
+            <&zip_y_scaler 1 55>,     /* 縦スクロール速度（同上） */
             <&zip_xy_to_scroll_mapper>,
             <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>; /* スクロール方向を反転 */
     };
