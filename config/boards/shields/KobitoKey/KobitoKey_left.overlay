@@ -75,15 +75,15 @@
         track-remainders;               /* 端数を持ち越して滑らかに */
     };
 
-    /* 左トラボのスクロール用 加速プロセッサ（右と同じ初期値・設定は独立管理） */
+    /* 左トラボのスクロール用 加速プロセッサ（右と独立管理） */
     scroll_accel_left: scroll_accel_left {
         compatible = "zmk,input-processor-acceleration";
         #input-processor-cells = <0>;
         status = "okay";
         input-type = <INPUT_EV_REL>;
-        min-factor = <1000>;            /* 低速時の倍率(=1.0倍、減速しない) */
+        min-factor = <1800>;            /* 低速時の倍率(=1.8倍、初動を早める) */
         max-factor = <3000>;            /* 高速時の最大倍率(=3.0倍) */
-        speed-threshold = <1000>;       /* これ以上の速度で加速開始(counts/sec) */
+        speed-threshold = <500>;        /* 加速開始を早める(counts/sec) */
         speed-max = <6000>;             /* この速度で最大倍率に到達 */
         acceleration-exponent = <2>;    /* 1=線形 2=二次 3=三次 */
         track-remainders;               /* 端数を持ち越して滑らかに */
