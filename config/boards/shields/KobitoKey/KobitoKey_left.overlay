@@ -37,7 +37,7 @@
         reg = <0>;
         spi-max-frequency = <2000000>;
         irq-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-        cpi = <200>; /* センサー感度 */
+        cpi = <400>; /* センサー感度: 初動取りこぼし改善のため200→400 */
 
 
         evt-type = <INPUT_EV_REL>;
@@ -98,8 +98,8 @@
             <&sensor_rotation_left>,
             <&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>, /* 軸入替: 横movement→縦スクロール */
             <&scroll_accel_left>, /* 速く動かすほど速くスクロール（左用・独立設定） */
-            <&zip_x_scaler 2 15>, /* 入替後のX(=元の上下movement)→横スクロール有効化(2倍速) */
-            <&zip_y_scaler 2 15>, /* 入替後のY(=元の横)を縦スクロールに使用(2倍速) */
+            <&zip_x_scaler 1 15>, /* 入替後のX→横スクロール（CPI 200→400化に合わせて倍率を1に戻し速度維持） */
+            <&zip_y_scaler 1 15>, /* 入替後のY→縦スクロール（同上） */
             <&zip_xy_to_scroll_mapper>,
             <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>,
             <&zip_scroll_transform INPUT_TRANSFORM_X_INVERT>;
