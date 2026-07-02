@@ -84,41 +84,41 @@ layers:
   - /
   arrow:
   - ESC
-  - ESC
-  - ESC
-  - ESC
-  - ESC
-  - F1
-  - F2
+  - F9
+  - F10
+  - F11
+  - F12
+  - PAGE UP
+  - {t: ▽, type: trans}
   - UP ARROW
   - {t: ▽, type: trans}
   - BACKSPACE
   - PSCRN
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {type: held}
-  - ESC
+  - F5
   - F6
+  - {t: F7, type: held}
+  - F8
+  - PAGE DOWN
   - LEFT ARROW
   - DOWN ARROW
   - RIGHT
-  - F10
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - ESC
-  - F11
-  - F12
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
+  - F1
+  - F2
+  - F3
+  - F4
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - DEL
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
