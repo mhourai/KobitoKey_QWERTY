@@ -96,6 +96,15 @@
             tapping-term-ms = <200>;
             bindings = <&kp RSHFT>, <&sk RSHFT>;
         };
+
+        /* position 19 用: タップ=ハイフン、ホールド=Shift(従来のhmrのまま維持)、
+           素早く2回タップ=Sticky Shift（次の1キーだけ大文字化） */
+        td_rshift_minus: tap_dance_rshift_minus {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&hmr RSHIFT MINUS>, <&sk RSHFT>;
+        };
     };
 
     combos {
@@ -127,7 +136,7 @@
         default_layer {
             bindings = <
 &kp Q              &kp W     &kp E           &kp R              &kp T                 &kp Y            &kp U            &kp I       &kp O             &kp P
-&hml LEFT_SHIFT A  &kp S     &hml_lt 5 D     &hml_lt 2 F        &kp G                 &kp H            &kp J            &kp K       &kp L             &hmr RSHIFT MINUS
+&hml LEFT_SHIFT A  &kp S     &hml_lt 5 D     &hml_lt 2 F        &kp G                 &kp H            &kp J            &kp K       &kp L             &td_rshift_minus
 &hml LEFT_SHIFT Z  &kp X     &kp C           &kp V              &kp B                 &kp N            &kp M            &kp COMMA   &kp DOT           &hmr LEFT_SHIFT SLASH
 &kp LEFT_GUI       &kp LALT  &hml LCTRL TAB  &hml LEFT_ALT TAB  &mt LEFT_SHIFT GRAVE  &hmr_lt 2 ENTER  &hmr_lt 1 SPACE  &kp DELETE  &td_sticky_shift  &hmr LALT SLASH
             >;
