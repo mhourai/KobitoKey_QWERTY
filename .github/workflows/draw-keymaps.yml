@@ -9,6 +9,7 @@ on:
       - "config/**/*.overlay"
       - "config/west.yml"
       - "keymap_drawer.config.yaml"
+      - ".github/workflows/draw-keymaps.yml"
 
 jobs:
   draw:
