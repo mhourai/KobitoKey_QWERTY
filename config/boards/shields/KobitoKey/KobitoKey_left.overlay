@@ -100,7 +100,18 @@
             <&zip_x_scaler 0 1>,  /* X(横)を無効化＝横スクロール出さない */
             <&zip_y_scaler 1 15>, /* Y(縦)を縦スクロールに使用 */
             <&zip_xy_to_scroll_mapper>;
+
+    /* tabswitchレイヤー(7)がアクティブな間だけ、左トラボの左右movementで
+       水平スクロール(WheelLeft/WheelRight)を出す。PC側でCtrl+Tab等に変換して使う。 */
+    tabswitcher {
+        layers = <7>;
+        input-processors =
+            <&sensor_rotation_left>,
+            <&zip_x_scaler 1 30>, /* 左右movement→水平スクロール */
+            <&zip_y_scaler 0 1>,  /* 上下movementは無効化 */
+            <&zip_xy_to_scroll_mapper>;
     };
+};
 
 / {
   /omit-if-no-ref/ zip_temp_layer: zip_temp_layer {
