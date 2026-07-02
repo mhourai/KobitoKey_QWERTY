@@ -99,8 +99,7 @@
             <&scroll_accel_left>, /* 速く動かすほど速くスクロール（左用・独立設定） */
             <&zip_x_scaler 0 1>,  /* X(横)を無効化＝横スクロール出さない */
             <&zip_y_scaler 1 15>, /* Y(縦)を縦スクロールに使用 */
-            <&zip_xy_to_scroll_mapper>,
-            <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>;
+            <&zip_xy_to_scroll_mapper>;
     };
 
 / {
