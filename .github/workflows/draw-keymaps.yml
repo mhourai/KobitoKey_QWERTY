@@ -19,4 +19,4 @@ jobs:
       keymap_patterns: "config/*.keymap"
       config_path: "keymap_drawer.config.yaml"
       output_folder: "keymap-drawer"
-      west_config_path: "config/west.yml"
+      west_config_path: "config"
