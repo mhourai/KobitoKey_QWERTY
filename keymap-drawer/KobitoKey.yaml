@@ -20,7 +20,7 @@ layers:
   - J
   - K
   - L
-  - {t: '-', h: RSHIFT}
+  - '&td_rshift_minus'
   - {t: Z, h: LEFT SHIFT}
   - X
   - C
