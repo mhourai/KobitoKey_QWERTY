@@ -1,0 +1,3 @@
+# keymap-drawer 設定ファイル
+# 詳細: https://github.com/caksoylar/keymap-drawer/blob/main/KEYMAP_SPEC.md
+# 現時点ではデフォルト設定のまま。見た目を調整したくなったらここに draw_config / parse_config を追記する。
