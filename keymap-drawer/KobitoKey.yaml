@@ -37,11 +37,11 @@ layers:
   - {t: TAB, h: LEFT ALT}
   - {t: '`', h: LEFT SHIFT}
   - {t: ENTER, h: arrow}
-  - {t: SPACE, h: NUMBER}
+  - {t: SPACE, h: character}
   - DELETE
   - '&td_sticky_shift'
   - {t: /, h: LALT}
-  NUMBER:
+  character:
   - ESC
   - '!'
   - '@'
@@ -168,8 +168,8 @@ layers:
   - {t: BT, h: '0'}
   - {t: BT, h: '1'}
   - {t: BT, h: '2'}
-  - {t: BT, h: '3'}
-  - {t: BT, h: '4'}
+  - {t: BT, h: '3', type: held}
+  - {t: BT, h: '4', type: held}
   - {t: ▽, type: trans}
   - F7
   - F8
@@ -294,3 +294,5 @@ combos:
 - p: [7, 8]
   k: scroll
   l: [default, MOUSE]
+- p: [4, 3]
+  k: {t: shortcut, h: sticky}
