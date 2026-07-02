@@ -1,0 +1,296 @@
+layout: {zmk_keyboard: KobitoKey}
+layers:
+  default:
+  - Q
+  - W
+  - E
+  - R
+  - T
+  - Y
+  - U
+  - I
+  - O
+  - P
+  - {t: A, h: LEFT SHIFT}
+  - {t: S, h: shortcut}
+  - {t: D, h: '5'}
+  - {t: F, h: arrow}
+  - G
+  - H
+  - J
+  - K
+  - L
+  - {t: '-', h: RSHIFT}
+  - {t: Z, h: LEFT SHIFT}
+  - X
+  - C
+  - V
+  - B
+  - N
+  - M
+  - ','
+  - .
+  - {t: /, h: LEFT SHIFT}
+  - LEFT GUI
+  - LALT
+  - {t: TAB, h: LCTRL}
+  - {t: TAB, h: LEFT ALT}
+  - {t: '`', h: LEFT SHIFT}
+  - {t: ENTER, h: arrow}
+  - {t: SPACE, h: NUMBER}
+  - DELETE
+  - '&td_sticky_shift'
+  - {t: /, h: LALT}
+  NUMBER:
+  - ESC
+  - '!'
+  - '@'
+  - '#'
+  - $
+  - '"'
+  - +
+  - UP ARROW
+  - '0x89'
+  - BACKSPACE
+  - '&'
+  - '%'
+  - ^
+  - '*'
+  - (
+  - '='
+  - LEFT
+  - DOWN ARROW
+  - RIGHT
+  - '['
+  - +
+  - '}'
+  - '|'
+  - ']'
+  - \
+  - ;
+  - ''''
+  - <
+  - '>'
+  - Sft+0x87
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - LSHFT
+  - {t: ▽, type: trans}
+  - ENTER
+  - {t: SPACE, type: held}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - /
+  arrow:
+  - ESC
+  - ESC
+  - ESC
+  - ESC
+  - ESC
+  - F1
+  - F2
+  - UP ARROW
+  - {t: ▽, type: trans}
+  - BACKSPACE
+  - PSCRN
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {type: held}
+  - ESC
+  - F6
+  - LEFT ARROW
+  - DOWN ARROW
+  - RIGHT
+  - F10
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - ESC
+  - F11
+  - F12
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - DEL
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  MOUSE:
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - '&mkp MB1'
+  - '&mkp MB2'
+  - {t: ▽, type: trans}
+  - {t: LGUI, h: sticky}
+  - {t: LSHFT, h: sticky}
+  - {t: LCTRL, h: sticky}
+  - {t: LALT, h: sticky}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: default, h: toggle}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: default, h: toggle}
+  shortcut:
+  - {t: BT, h: '0'}
+  - {t: BT, h: '1'}
+  - {t: BT, h: '2'}
+  - {t: BT, h: '3'}
+  - {t: BT, h: '4'}
+  - {t: ▽, type: trans}
+  - F7
+  - F8
+  - F9
+  - F12
+  - {t: BT DISC, h: '0'}
+  - {t: BT DISC, h: '1', type: held}
+  - {t: BT DISC, h: '2'}
+  - {t: BT DISC, h: '3'}
+  - {t: BT DISC, h: '4'}
+  - {t: ▽, type: trans}
+  - F4
+  - F5
+  - F6
+  - F11
+  - BT CLR
+  - BT CLR ALL
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - F1
+  - F2
+  - F3
+  - F10
+  - '&bootloader'
+  - '&sys_reset'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  '5':
+  - ESC
+  - AltGr+RIGHT
+  - {t: ▽, type: trans}
+  - Sft+Gui+LEFT
+  - Ctl+T
+  - /
+  - KP 7
+  - KP 8
+  - KP 9
+  - BSPC
+  - {t: ▽, type: trans}
+  - AltGr+LEFT
+  - {type: held}
+  - Sft+Ctl+;
+  - F2
+  - +
+  - KP 4
+  - KP 5
+  - KP 6
+  - '-'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - Gui+V
+  - Ctl+Sft+N
+  - KP 0
+  - KP 1
+  - KP 2
+  - KP 3
+  - .
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - Sft+Gui+LEFT
+  - Sft+Gui+RIGHT
+  - Gui+TAB
+  - HOME
+  - END
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - ESC
+  scroll:
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {type: held}
+  - {type: held}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+combos:
+- p: [0, 1]
+  k: ESC
+  l: [default]
+- p: [7, 8]
+  k: scroll
+  l: [default, MOUSE]
