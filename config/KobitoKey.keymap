@@ -63,13 +63,16 @@
         };
 
         /* レイヤータップは「直後にBackspace」等の使用頻度が高く、require-prior-idle-msを
-           付けるとタイプ直後にほぼ必ずタップ判定されてレイヤーに入れなくなるため未設定 */
+           付けるとタイプ直後にほぼ必ずタップ判定されてレイヤーに入れなくなるため未設定。
+           D/Fはこのキーのみで使用。意図的なレイヤー切替は高速に押すことがない一方、
+           高速タイプ中の反対の手との組み合わせで誤ってホールド判定されやすいため、
+           tapping-term-ms/quick-tap-msを通常より長めにして誤爆を抑制。 */
         hml_lt: home_row_layer_left {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "balanced";
-            tapping-term-ms = <200>;
-            quick-tap-ms = <150>;
+            tapping-term-ms = <300>;
+            quick-tap-ms = <200>;
             bindings = <&mo>, <&kp>;
 
             hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 25 26 27 28 29 35 36 37 38 39>;
