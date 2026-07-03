@@ -34,7 +34,7 @@
     behaviors {
         /* Positional Hold-Tap: 反対の手のキーが押された時だけホールド判定する。
            同じ手でのロール入力時の誤ホールド（誤Shift・誤レイヤー）を防止する。
-           position 34 (&mt LEFT_SHIFT GRAVE) は対象外（従来のmtのまま維持）。 */
+           position 34 (mt_grave_shift) は対象外（手の判定なし、後述のmt_grave_shift参照）。 */
 
         hml: home_row_mod_left {
             compatible = "zmk,behavior-hold-tap";
@@ -86,6 +86,20 @@
             tapping-term-ms = <280>;
             quick-tap-ms = <175>;
             bindings = <&mo>, <&kp>;
+        };
+
+        /* position 34 用: タップ=GRAVE、ホールド=Shift(従来のmtと同じ挙動)。
+           隣接するEnter/Space(lt_thumb)等の別Hold-Tapに割り込まれた際、
+           Shiftが正しく乗らないことがあるため hold-trigger-on-release を追加。
+           手の判定(hold-trigger-key-positions)は付けない（対象外の要望通り）。 */
+        mt_grave_shift: mod_tap_grave_shift {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&kp>, <&kp>;
+
+            hold-trigger-on-release;
         };
 
         /* position 38 用: 長押し=通常Shift(従来通り)、素早く2回タップ=Sticky Shift */
@@ -145,7 +159,7 @@
 &kp Q              &kp W     &kp E           &kp R              &kp T                 &kp Y            &kp U            &kp I       &kp O             &kp P
 &hml LEFT_SHIFT A  &kp S     &hml_lt 5 D     &hml_lt 2 F        &kp G                 &kp H            &kp J            &kp K       &kp L             &td_rshift_minus
 &hml LEFT_SHIFT Z  &kp X     &kp C           &kp V              &kp B                 &kp N            &kp M            &kp COMMA   &kp DOT           &hmr LEFT_SHIFT SLASH
-&kp LEFT_GUI       &kp LALT  &hml LCTRL TAB  &hml LEFT_ALT TAB  &mt LEFT_SHIFT GRAVE  &lt_thumb 2 ENTER  &lt_thumb 1 SPACE  &kp DELETE  &td_sticky_shift  &hmr LALT SLASH
+&kp LEFT_GUI       &kp LALT  &hml LCTRL TAB  &hml LEFT_ALT TAB  &mt_grave_shift LEFT_SHIFT GRAVE  &lt_thumb 2 ENTER  &lt_thumb 1 SPACE  &kp DELETE  &td_sticky_shift  &hmr LALT SLASH
             >;
         };
 
