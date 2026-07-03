@@ -76,18 +76,6 @@
             hold-trigger-on-release;
         };
 
-        hmr_lt: home_row_layer_right {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "balanced";
-            tapping-term-ms = <200>;
-            quick-tap-ms = <150>;
-            bindings = <&mo>, <&kp>;
-
-            hold-trigger-key-positions = <0 1 2 3 4 10 11 12 13 14 20 21 22 23 24 30 31 32 33 34>;
-            hold-trigger-on-release;
-        };
-
         /* position 38 用: 長押し=通常Shift(従来通り)、素早く2回タップ=Sticky Shift */
 
         td_sticky_shift: tap_dance_sticky_shift {
@@ -145,7 +133,7 @@
 &kp Q              &kp W     &kp E           &kp R              &kp T                 &kp Y            &kp U            &kp I       &kp O             &kp P
 &hml LEFT_SHIFT A  &kp S     &hml_lt 5 D     &hml_lt 2 F        &kp G                 &kp H            &kp J            &kp K       &kp L             &td_rshift_minus
 &hml LEFT_SHIFT Z  &kp X     &kp C           &kp V              &kp B                 &kp N            &kp M            &kp COMMA   &kp DOT           &hmr LEFT_SHIFT SLASH
-&kp LEFT_GUI       &kp LALT  &hml LCTRL TAB  &hml LEFT_ALT TAB  &mt LEFT_SHIFT GRAVE  &hmr_lt 2 ENTER  &hmr_lt 1 SPACE  &kp DELETE  &td_sticky_shift  &hmr LALT SLASH
+&kp LEFT_GUI       &kp LALT  &hml LCTRL TAB  &hml LEFT_ALT TAB  &mt LEFT_SHIFT GRAVE  &lt 2 ENTER  &lt 1 SPACE  &kp DELETE  &td_sticky_shift  &hmr LALT SLASH
             >;
         };
 
