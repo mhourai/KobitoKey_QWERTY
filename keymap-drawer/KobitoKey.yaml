@@ -33,12 +33,12 @@ layers:
   - {t: /, h: LEFT SHIFT}
   - LEFT GUI
   - SPACE
-  - {t: TAB, h: LCTRL}
+  - LCTRL
   - {t: TAB, h: LEFT ALT}
   - {t: '`', h: LEFT SHIFT}
   - {t: ENTER, h: arrow}
   - {t: SPACE, h: character}
-  - DELETE
+  - {t: DELETE, h: SPACE}
   - '&td_sticky_shift'
   - {t: /, h: LALT}
   character:
