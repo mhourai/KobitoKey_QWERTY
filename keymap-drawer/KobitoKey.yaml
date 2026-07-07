@@ -32,7 +32,7 @@ layers:
   - .
   - {t: /, h: LEFT SHIFT}
   - LEFT GUI
-  - LALT
+  - SPACE
   - {t: TAB, h: LCTRL}
   - {t: TAB, h: LEFT ALT}
   - {t: '`', h: LEFT SHIFT}
