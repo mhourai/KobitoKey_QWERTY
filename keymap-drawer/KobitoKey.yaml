@@ -81,7 +81,7 @@ layers:
   - {t: SPACE, type: held}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - /
+  - Sft+0x89
   arrow:
   - ESC
   - F9
