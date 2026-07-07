@@ -61,6 +61,22 @@
         rotation-angle = <24>;
     };
 
+    /* 右トラボのカーソル用 低速自動減速プロセッサ（19mmボールの精密操作対策）。
+       高速側は max-factor=1000(等倍)のままにして、OS側のポインタ加速との
+       二重加速（速い動きでの暴れ）を避け、低速時のみ自動でゲインを下げる。 */
+    cursor_decel: cursor_decel {
+        compatible = "zmk,input-processor-acceleration";
+        #input-processor-cells = <0>;
+        status = "okay";
+        input-type = <INPUT_EV_REL>;
+        min-factor = <400>;             /* 低速時の倍率(=0.4倍、精密モード相当) */
+        max-factor = <1000>;            /* 高速時の倍率(=1.0倍、現状維持で加速なし) */
+        speed-threshold = <300>;        /* この速度以下は精密固定(counts/sec) */
+        speed-max = <2000>;             /* この速度で通常倍率(1.0倍)に到達 */
+        acceleration-exponent = <2>;    /* 1=線形 2=二次 3=三次 */
+        track-remainders;               /* 端数を持ち越して滑らかに */
+    };
+
     /* 右トラボのスクロール用 加速プロセッサ（速く動かすほど倍率が上がる） */
     scroll_accel: scroll_accel {
         compatible = "zmk,input-processor-acceleration";
@@ -126,6 +142,7 @@
 
     input-processors =
         <&sensor_rotation_right>,
+        <&cursor_decel>, /* 低速時のみ自動で精密モード(0.4倍)になり、高速時は通常通り(1.0倍) */
         <&zip_temp_layer 3 5000>; /* オートマウスレイヤーの指定とトラボ操作及びマウスボタン押下後に滞留する時間 */
 
     /* scrollレイヤー(6)がアクティブな間だけ、右トラボを縦スクロール動作にする。
