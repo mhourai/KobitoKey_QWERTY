@@ -67,6 +67,7 @@
            D/Fはこのキーのみで使用。意図的なレイヤー切替は高速に押すことがない一方、
            高速タイプ中の反対の手との組み合わせで誤ってホールド判定されやすいため、
            tapping-term-ms/quick-tap-msを通常より長めにして誤爆を抑制。 */
+
         hml_lt: home_row_layer_left {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -82,6 +83,7 @@
         /* position 35/36(Enter/Space)用: 手の判定なし(素の&ltと違いflavor=balanced)。
            &lt標準のtap-preferredは押下が200msをわずかに超えるだけでタップが
            無効になりキーコードが送出されないため、猶予を少し伸ばして対応 */
+
         lt_thumb: layer_tap_thumb {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -95,6 +97,7 @@
            隣接するEnter/Space(lt_thumb)等の別Hold-Tapに割り込まれた際、
            Shiftが正しく乗らないことがあるため hold-trigger-on-release を追加。
            手の判定(hold-trigger-key-positions)は付けない（対象外の要望通り）。 */
+
         mt_grave_shift: mod_tap_grave_shift {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -116,6 +119,7 @@
 
         /* position 19 用: タップ=ハイフン、ホールド=Shift(従来のhmrのまま維持)、
            素早く2回タップ=Sticky Shift（次の1キーだけ大文字化） */
+
         td_rshift_minus: tap_dance_rshift_minus {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -159,10 +163,10 @@
 
         default_layer {
             bindings = <
-&kp Q              &kp W     &kp E           &kp R              &kp T                 &kp Y            &kp U            &kp I       &kp O             &kp P
-&hml LEFT_SHIFT A  &kp S     &hml_lt 5 D     &hml_lt 2 F        &kp G                 &kp H            &kp J            &kp K       &kp L             &td_rshift_minus
-&hml LEFT_SHIFT Z  &kp X     &kp C           &kp V              &kp B                 &kp N            &kp M            &kp COMMA   &kp DOT           &hmr LEFT_SHIFT SLASH
-&kp LEFT_GUI       &kp LALT  &hml LCTRL TAB  &hml LEFT_ALT TAB  &mt_grave_shift LEFT_SHIFT GRAVE  &lt_thumb 2 ENTER  &lt_thumb 1 SPACE  &kp DELETE  &td_sticky_shift  &hmr LALT SLASH
+&kp Q              &kp W      &kp E           &kp R              &kp T                             &kp Y              &kp U              &kp I       &kp O             &kp P
+&hml LEFT_SHIFT A  &kp S      &hml_lt 5 D     &hml_lt 2 F        &kp G                             &kp H              &kp J              &kp K       &kp L             &td_rshift_minus
+&hml LEFT_SHIFT Z  &kp X      &kp C           &kp V              &kp B                             &kp N              &kp M              &kp COMMA   &kp DOT           &hmr LEFT_SHIFT SLASH
+&kp LEFT_GUI       &kp SPACE  &hml LCTRL TAB  &hml LEFT_ALT TAB  &mt_grave_shift LEFT_SHIFT GRAVE  &lt_thumb 2 ENTER  &lt_thumb 1 SPACE  &kp DELETE  &td_sticky_shift  &hmr LALT SLASH
             >;
         };
 
