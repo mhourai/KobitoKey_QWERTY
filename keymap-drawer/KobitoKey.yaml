@@ -236,7 +236,7 @@ layers:
   - KP 2
   - KP 3
   - .
-  - {t: ▽, type: trans}
+  - KP NUMLOCK
   - {t: ▽, type: trans}
   - Sft+Gui+LEFT
   - Sft+Gui+RIGHT
