@@ -110,12 +110,15 @@
     status = "okay";
     device = <&tb_left>;
 
+    /* 回転(sensor_rotation_left)は外した。-69°回転だとスクロールが主に
+       物理的な左右movementに反応してしまい「上下に動かすと逆・変」になるため。
+       回転なし＝物理的な上下movementがそのまま縦スクロールになる。 */
     input-processors =
-            <&sensor_rotation_left>,
             <&scroll_accel_left>, /* 速く動かすほど速くスクロール（左用・独立設定） */
             <&zip_x_scaler 0 1>,  /* X(横)を無効化＝横スクロール出さない */
             <&zip_y_scaler 1 8>,  /* Y(縦)を縦スクロールに使用。÷15→÷8でゲインを上げ許容範囲を拡大 */
-            <&zip_xy_to_scroll_mapper>;
+            <&zip_xy_to_scroll_mapper>,
+            <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>; /* 上下の向きを合わせる */
 
     /* tabswitchレイヤー(7)がアクティブな間だけ、左トラボの左右movementで
        水平スクロール(WheelLeft/WheelRight)を出す。PC側でCtrl+Tab等に変換して使う。 */
