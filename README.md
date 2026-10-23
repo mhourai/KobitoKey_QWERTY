@@ -5,6 +5,11 @@
 
 ZMKファームウェア + トラックボール×2（左右分割）搭載のカスタムキーボード用コンフィグです。
 
+> [!NOTE]
+> **現在のブランチ: `main`（標準ブランチ・安定版）**
+> - **用途**: 通常利用向けの標準構成です。
+> - **構成**: LEDウィジェット有効（`CONFIG_RGBLED_WIDGET=y`）、右トラボ低速自動減速有効（0.4倍）、Prospector BLE広告無効。
+
 ## キーマップ
 
 `config/KobitoKey.keymap` を変更すると、GitHub Actionsが自動でキーマップ図を再生成します（[keymap-drawer](https://github.com/caksoylar/keymap-drawer)使用）。
