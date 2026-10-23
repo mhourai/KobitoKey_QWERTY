@@ -64,32 +64,30 @@
 
         /* レイヤータップは「直後にBackspace」等の使用頻度が高く、require-prior-idle-msを
            付けるとタイプ直後にほぼ必ずタップ判定されてレイヤーに入れなくなるため未設定。
-           D/Fはこのキーのみで使用。意図的なレイヤー切替は高速に押すことがない一方、
-           高速タイプ中の反対の手との組み合わせで誤ってホールド判定されやすいため、
-           tapping-term-ms/quick-tap-msを通常より長めにして誤爆を抑制。 */
+           hold-trigger-on-release を外して相手キー押下時に即座にホールド判定させ、
+           tapping-term-msを200msに調整してレイヤー反応の悪さを改善。 */
 
         hml_lt: home_row_layer_left {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "balanced";
-            tapping-term-ms = <300>;
-            quick-tap-ms = <200>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
             bindings = <&mo>, <&kp>;
 
             hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 25 26 27 28 29 35 36 37 38 39>;
-            hold-trigger-on-release;
         };
 
-        /* position 35/36(Enter/Space)用: 手の判定なし(素の&ltと違いflavor=balanced)。
-           &lt標準のtap-preferredは押下が200msをわずかに超えるだけでタップが
-           無効になりキーコードが送出されないため、猶予を少し伸ばして対応 */
+        /* position 35/36(Enter/Space)用:
+           flavor=hold-preferred に変更し、LTキーを押しながら別キーを押した際に
+           即座に確実にレイヤーを発動させる（ロール入力時のタップ誤爆を防止）。
+           quick-tap-ms を外すことで直前の入力直後でもホールドが無効化されないように対応。 */
 
         lt_thumb: layer_tap_thumb {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            flavor = "balanced";
-            tapping-term-ms = <280>;
-            quick-tap-ms = <175>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
             bindings = <&mo>, <&kp>;
         };
 
