@@ -5,6 +5,11 @@
 
 ZMKファームウェア + トラックボール×2（左右分割）搭載のカスタムキーボード用コンフィグです。
 
+> [!NOTE]
+> **現在のブランチ: `no-cursor-decel`（トラボ精密減速OFF版）**
+> - **用途**: 右トラックボールの低速自動減速プロセッサ（`cursor_decel`）を外し、カーソル遅延の切り分けや等倍操作を行うための動作確認・診断用ブランチです。
+> - **構成**: 右トラボ低速自動減速無効、LEDウィジェット有効、Prospector BLE広告無効。
+
 ## キーマップ
 
 `config/KobitoKey.keymap` を変更すると、GitHub Actionsが自動でキーマップ図を再生成します（[keymap-drawer](https://github.com/caksoylar/keymap-drawer)使用）。
