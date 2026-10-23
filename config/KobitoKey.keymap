@@ -30,6 +30,14 @@
 #define JP_EISU         LANGUAGE_2        // 英数
 #define JP_HANZEN       GRAVE             // 半角/全角
 
+/* マウスキー(&mkp)の押下/リリース時にzip_temp_layerを再発火させ、オートマウスレイヤーの
+   タイムアウト(5秒)をリセットする。&mkpはlocality=CENTRALのため右半分でのクリックも
+   中央(左)側のmkp_input_listenerへ届く。excluded-positions(7,8)によりクリック自体で
+   レイヤーは解除されない。 */
+&mkp_input_listener {
+    input-processors = <&zip_temp_layer 3 5000>;
+};
+
 / {
     behaviors {
         /* Positional Hold-Tap: 反対の手のキーが押された時だけホールド判定する。

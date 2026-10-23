@@ -54,7 +54,7 @@ ZMKファームウェア + トラックボール×2（左右分割）搭載の�
 ## ブランチ構成と役割一覧
 
 本リポジトリでは機能・診断ごとにブランチを切り分けて運用しています。  
-**主要ブランチ（`main`, `no-led-widget`, `prospector-support`, `no-cursor-decel`）間において、`KobitoKey.keymap`（キーマップファイル）の内容は完全に同一です。**
+**主要ブランチ（`main`, `prospector-support`, `no-cursor-decel`）間において、`KobitoKey.keymap`（キーマップファイル）の内容は完全に同一です。`no-led-widget` のみ、AMLクリック延長設定（`&mkp_input_listener`）が先行導入されています。**
 
 | ブランチ名 | 用途・特徴 | トラボ低速減速 (`cursor_decel`) | LED Widget | Prospector BLE広告 | 備考 |
 |---|---|:---:|:---:|:---:|---|
