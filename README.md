@@ -5,6 +5,11 @@
 
 ZMKファームウェア + トラックボール×2（左右分割）搭載のカスタムキーボード用コンフィグです。
 
+> [!NOTE]
+> **現在のブランチ: `prospector-support`（Prospector外部表示器 連携版）**
+> - **用途**: Prospector ステータス表示ドングルと連携し、バッテリー残量やレイヤー状態を外部ディスプレイに表示するためのブランチです。
+> - **構成**: Prospector BLE広告有効（`CONFIG_ZMK_STATUS_ADVERTISEMENT=y`）、LEDウィジェット有効、右トラボ低速自動減速有効（0.4倍）。
+
 ## キーマップ
 
 `config/KobitoKey.keymap` を変更すると、GitHub Actionsが自動でキーマップ図を再生成します（[keymap-drawer](https://github.com/caksoylar/keymap-drawer)使用）。
