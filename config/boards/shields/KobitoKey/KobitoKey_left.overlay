@@ -37,7 +37,7 @@
         reg = <0>;
         spi-max-frequency = <2000000>;
         irq-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-        cpi = <400>; /* センサー感度: 初動取りこぼし改善のため200→400 */
+        cpi = <1200>; /* センサー感度: 高解像度化により微小な回転も確実に検出 */
 
 
         evt-type = <INPUT_EV_REL>;
@@ -91,16 +91,17 @@
         track-remainders;               /* 端数を持ち越して滑らかに */
     };
 
-    /* 左トラボのスクロール用 加速プロセッサ（右と独立管理） */
+    /* 左トラボのスクロール用 加速プロセッサ（右と独立管理）
+       低速時は等倍(1.0倍)でゆっくり微細スクロールさせ、速く動かしたときは4.0倍まで急加速 */
     scroll_accel_left: scroll_accel_left {
         compatible = "zmk,input-processor-acceleration";
         #input-processor-cells = <0>;
         status = "okay";
         input-type = <INPUT_EV_REL>;
-        min-factor = <2500>;            /* 低速時の倍率(=2.5倍)。ズレた方向でもtick閾値を越えやすくし死角を狭める */
-        max-factor = <3000>;            /* 高速時の最大倍率(=3.0倍) */
-        speed-threshold = <500>;        /* 加速開始を早める(counts/sec) */
-        speed-max = <6000>;             /* この速度で最大倍率に到達 */
+        min-factor = <1000>;            /* 低速時の倍率(=1.0倍、無駄な増幅を抑えて低速維持) */
+        max-factor = <4000>;            /* 高速時の最大倍率(=4.0倍、素早く弾いた時に高速スクロール) */
+        speed-threshold = <400>;        /* この速度から加速を開始(counts/sec) */
+        speed-max = <3500>;             /* この速度で最大倍率に到達 */
         acceleration-exponent = <2>;    /* 1=線形 2=二次 3=三次 */
         track-remainders;               /* 端数を持ち越して滑らかに */
     };
@@ -116,7 +117,7 @@
     input-processors =
             <&scroll_accel_left>, /* 速く動かすほど速くスクロール（左用・独立設定） */
             <&zip_x_scaler 0 1>,  /* X(横)を無効化＝横スクロール出さない */
-            <&zip_y_scaler 1 8>,  /* Y(縦)を縦スクロールに使用。÷15→÷8でゲインを上げ許容範囲を拡大 */
+            <&zip_y_scaler 1 36>, /* Y(縦)を縦スクロールに使用。高解像度(CPI 1200)に合わせ除数を大きくし、たくさん回してゆっくりスクロール */
             <&zip_xy_to_scroll_mapper>,
             <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>; /* 上下の向きを合わせる */
 
