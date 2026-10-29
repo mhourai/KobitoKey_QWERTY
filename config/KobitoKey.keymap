@@ -72,8 +72,9 @@
 
         /* レイヤータップ（D/Fキー用）:
            レイヤー先（レイヤー2のF1〜F12、レイヤー5のショートカット等）に左手側のキーが
-           多数含まれるため、手の限定(hold-trigger-key-positions)は付けず全キー有効とする。
-           flavor=balanced で相手キー押下時にスムーズにレイヤー判定させる。 */
+           多数含まれるため、手の限定(hold-trigger-key-positions)を外して全キー有効化。
+           ※ただし、高速タイピング時の誤ホールド（意図しないレイヤー発動）対策でもあるため、
+             実運用で誤判定が増えないか様子見中。誤爆が多い場合は判定時間や条件の再調整を検討。 */
 
         hml_lt: home_row_layer_left {
             compatible = "zmk,behavior-hold-tap";
