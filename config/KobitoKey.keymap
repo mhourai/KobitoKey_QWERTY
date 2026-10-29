@@ -70,10 +70,10 @@
             hold-trigger-on-release;
         };
 
-        /* レイヤータップは「直後にBackspace」等の使用頻度が高く、require-prior-idle-msを
-           付けるとタイプ直後にほぼ必ずタップ判定されてレイヤーに入れなくなるため未設定。
-           hold-trigger-on-release を外して相手キー押下時に即座にホールド判定させ、
-           tapping-term-msを200msに調整してレイヤー反応の悪さを改善。 */
+        /* レイヤータップ（D/Fキー用）:
+           レイヤー先（レイヤー2のF1〜F12、レイヤー5のショートカット等）に左手側のキーが
+           多数含まれるため、手の限定(hold-trigger-key-positions)は付けず全キー有効とする。
+           flavor=balanced で相手キー押下時にスムーズにレイヤー判定させる。 */
 
         hml_lt: home_row_layer_left {
             compatible = "zmk,behavior-hold-tap";
@@ -82,8 +82,6 @@
             tapping-term-ms = <200>;
             quick-tap-ms = <150>;
             bindings = <&mo>, <&kp>;
-
-            hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 25 26 27 28 29 35 36 37 38 39>;
         };
 
         /* position 35/36(Enter/Space)用:
