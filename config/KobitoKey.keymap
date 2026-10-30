@@ -55,6 +55,7 @@
 
             hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 25 26 27 28 29 35 36 37 38 39>;
             hold-trigger-on-release;
+
         };
 
         hmr: home_row_mod_right {
@@ -68,6 +69,7 @@
 
             hold-trigger-key-positions = <0 1 2 3 4 10 11 12 13 14 20 21 22 23 24 30 31 32 33 34>;
             hold-trigger-on-release;
+
         };
 
         /* レイヤータップ（D/Fキー用）:
@@ -99,9 +101,9 @@
         };
 
         /* position 34 用: タップ=GRAVE、ホールド=Shift(従来のmtと同じ挙動)。
-           隣接するEnter/Space(lt_thumb)等の別Hold-Tapに割り込まれた際、
-           Shiftが正しく乗らないことがあるため hold-trigger-on-release を追加。
-           手の判定(hold-trigger-key-positions)は付けない（対象外の要望通り）。 */
+           他キー押下時に即時Shiftが発動するよう hold-trigger-on-release を削除。
+           手の判定(hold-trigger-key-positions)は付けない。 */
+
 
         mt_grave_shift: mod_tap_grave_shift {
             compatible = "zmk,behavior-hold-tap";
@@ -110,7 +112,7 @@
             tapping-term-ms = <200>;
             bindings = <&kp>, <&kp>;
 
-            hold-trigger-on-release;
+
         };
 
         /* position 38 用: 長押し=通常Shift(従来通り)、素早く2回タップ=Sticky Shift */
