@@ -116,7 +116,7 @@
        回転なし＝物理的な上下movementがそのまま縦スクロールになる。 */
     input-processors =
             <&scroll_accel_left>, /* 速く動かすほど速くスクロール（左用・独立設定） */
-            <&zip_x_scaler 0 1>,  /* X(横)を無効化＝横スクロール出さない */
+            <&zip_x_scaler 1 36>, /* X(横)のスクロールを有効化（水平スクロール対応） */
             <&zip_y_scaler 1 36>, /* Y(縦)を縦スクロールに使用。高解像度(CPI 1200)に合わせ除数を大きくし、たくさん回してゆっくりスクロール */
             <&zip_xy_to_scroll_mapper>,
             <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>; /* 上下の向きを合わせる */
