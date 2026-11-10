@@ -30,6 +30,13 @@
 #define JP_EISU         LANGUAGE_2        // 英数
 #define JP_HANZEN       GRAVE             // 半角/全角
 
+/* マウスキー(&mkp)の押下/リリース時にzip_temp_layerを再発火させ、オートマウスレイヤーの
+   タイムアウト(5秒)をリセットする。&mkpはlocality=CENTRALのため右半分でのクリックも
+   中央(左)側のmkp_input_listenerへ届く。excluded-positions(7,8)によりクリック自体で
+   レイヤーは解除されない。 */
+
+&mkp_input_listener { input-processors = <&zip_temp_layer 3 5000>; };
+
 / {
     behaviors {
         /* Positional Hold-Tap: 反対の手のキーが押された時だけホールド判定する。
@@ -62,41 +69,37 @@
             hold-trigger-on-release;
         };
 
-        /* レイヤータップは「直後にBackspace」等の使用頻度が高く、require-prior-idle-msを
-           付けるとタイプ直後にほぼ必ずタップ判定されてレイヤーに入れなくなるため未設定。
-           D/Fはこのキーのみで使用。意図的なレイヤー切替は高速に押すことがない一方、
-           高速タイプ中の反対の手との組み合わせで誤ってホールド判定されやすいため、
-           tapping-term-ms/quick-tap-msを通常より長めにして誤爆を抑制。 */
+        /* レイヤータップ（D/Fキー用）:
+           レイヤー先（レイヤー2のF1〜F12、レイヤー5のショートカット等）に左手側のキーが
+           多数含まれるため、手の限定(hold-trigger-key-positions)を外して全キー有効化。
+           ※ただし、高速タイピング時の誤ホールド（意図しないレイヤー発動）対策でもあるため、
+             実運用で誤判定が増えないか様子見中。誤爆が多い場合は判定時間や条件の再調整を検討。 */
 
         hml_lt: home_row_layer_left {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "balanced";
-            tapping-term-ms = <300>;
-            quick-tap-ms = <200>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
             bindings = <&mo>, <&kp>;
-
-            hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 25 26 27 28 29 35 36 37 38 39>;
-            hold-trigger-on-release;
         };
 
-        /* position 35/36(Enter/Space)用: 手の判定なし(素の&ltと違いflavor=balanced)。
-           &lt標準のtap-preferredは押下が200msをわずかに超えるだけでタップが
-           無効になりキーコードが送出されないため、猶予を少し伸ばして対応 */
+        /* position 35/36(Enter/Space)用:
+           flavor=hold-preferred に変更し、LTキーを押しながら別キーを押した際に
+           即座に確実にレイヤーを発動させる（ロール入力時のタップ誤爆を防止）。
+           quick-tap-ms を外すことで直前の入力直後でもホールドが無効化されないように対応。 */
 
         lt_thumb: layer_tap_thumb {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            flavor = "balanced";
-            tapping-term-ms = <280>;
-            quick-tap-ms = <175>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
             bindings = <&mo>, <&kp>;
         };
 
         /* position 34 用: タップ=GRAVE、ホールド=Shift(従来のmtと同じ挙動)。
-           隣接するEnter/Space(lt_thumb)等の別Hold-Tapに割り込まれた際、
-           Shiftが正しく乗らないことがあるため hold-trigger-on-release を追加。
-           手の判定(hold-trigger-key-positions)は付けない（対象外の要望通り）。 */
+           他キー押下時に即時Shiftが発動するよう hold-trigger-on-release を削除。
+           手の判定(hold-trigger-key-positions)は付けない。 */
 
         mt_grave_shift: mod_tap_grave_shift {
             compatible = "zmk,behavior-hold-tap";
@@ -104,8 +107,6 @@
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
             bindings = <&kp>, <&kp>;
-
-            hold-trigger-on-release;
         };
 
         /* position 38 用: 長押し=通常Shift(従来通り)、素早く2回タップ=Sticky Shift */
@@ -163,10 +164,10 @@
 
         default_layer {
             bindings = <
-&kp Q              &kp W      &kp E        &kp R              &kp T                             &kp Y              &kp U              &kp I             &kp O             &kp P
-&hml LEFT_SHIFT A  &kp S      &hml_lt 5 D  &hml_lt 2 F        &kp G                             &kp H              &kp J              &kp K             &kp L             &td_rshift_minus
-&hml LEFT_SHIFT Z  &kp X      &kp C        &kp V              &kp B                             &kp N              &kp M              &kp COMMA         &kp DOT           &hmr LEFT_SHIFT SLASH
-&kp LEFT_GUI       &kp SPACE  &kp LCTRL    &hml LEFT_ALT TAB  &mt_grave_shift LEFT_SHIFT GRAVE  &lt_thumb 2 ENTER  &lt_thumb 1 SPACE  &mt SPACE DELETE  &td_sticky_shift  &hmr LALT SLASH
+&kp Q              &kp W      &kp E        &kp R              &kp T                 &kp Y              &kp U              &kp I             &kp O             &kp P
+&hml LEFT_SHIFT A  &kp S      &hml_lt 5 D  &hml_lt 2 F        &kp G                 &kp H              &kp J              &kp K             &kp L             &td_rshift_minus
+&hml LEFT_SHIFT Z  &kp X      &kp C        &kp V              &kp B                 &kp N              &kp M              &kp COMMA         &kp DOT           &hmr LEFT_SHIFT SLASH
+&kp LEFT_GUI       &kp SPACE  &kp LCTRL    &hml LEFT_ALT TAB  &mt LEFT_SHIFT GRAVE  &lt_thumb 2 ENTER  &lt_thumb 1 SPACE  &mt SPACE DELETE  &td_sticky_shift  &hmr LALT SLASH
             >;
         };
 
