@@ -154,14 +154,15 @@
         };
 
         /* position 11 (レイヤー0のSキー) 用:
-           通常タップ時は文字「S」、押している間は即座にレイヤー8（左手トラボカーソル）を発動。
-           トラックボール操作時に即座にホールド判定されるよう flavor = "hold-preferred" に設定。 */
+           通常タップ時は文字「S」、1秒弱(800ms)長押しした時だけレイヤー8（左手トラボカーソル）を発動。
+           tap-preferred により、通常のタイピング中は即座に文字「S」として送出され誤爆を防ぐ。 */
 
         lt_cursor_s: layer_tap_cursor_s {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            flavor = "hold-preferred";
-            tapping-term-ms = <180>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <800>;
+            quick-tap-ms = <175>;
             bindings = <&mo>, <&kp>;
         };
     };
