@@ -31,7 +31,7 @@ layers:
   - ','
   - .
   - {t: /, h: LEFT SHIFT}
-  - LEFT GUI
+  - {t: LEFT GUI, h: '&bt_reconnect'}
   - SPACE
   - LCTRL
   - {t: TAB, h: LEFT ALT}
