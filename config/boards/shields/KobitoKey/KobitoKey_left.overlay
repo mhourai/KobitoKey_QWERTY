@@ -110,21 +110,22 @@
     /* =========================================================================
      * 【新機能】テキストカーソル（矢印キー）用 移動プロセッサ
      *
-     * 【設定3: 初動しきい値 / 速度暴走防止】
-     * - min-factor: 初動・低速時の感度倍率（1000 = 等倍）。
-     * - max-factor: 高速時の最大倍率。矢印キーが暴走連打されないよう 1200(1.2倍) に抑制。
-     * - speed-threshold: この速度(counts/sec)からわずかに加速開始。
+     * 【設定3: 初動しきい値 / 加速度機能】
+     * - min-factor: 初動・低速時の感度倍率（1000 = 等倍、1文字ずつ精密移動）。
+     * - max-factor: 高速時の最大倍率（3000 = 3.0倍、速く弾いたときに高速文字送り）。
+     * - speed-threshold: この速度(counts/sec)から加速を開始。
+     * - acceleration-exponent: 2（2次曲線で自然かつダイナミックに加速）。
      * ========================================================================= */
     cursor_text_accel: cursor_text_accel {
         compatible = "zmk,input-processor-acceleration";
         #input-processor-cells = <0>;
         status = "okay";
         input-type = <INPUT_EV_REL>;
-        min-factor = <1000>;            /* 初動・低速時の倍率(=1.0倍) */
-        max-factor = <1200>;            /* 急速な連打を防ぐため最大1.2倍に抑制 */
-        speed-threshold = <300>;        /* 加速開始の速度しきい値(counts/sec) */
-        speed-max = <3000>;             /* 最大倍率に到達する速度 */
-        acceleration-exponent = <1>;    /* 1=線形 2=二次 */
+        min-factor = <1000>;            /* 初動・低速時は等倍(=1.0倍) */
+        max-factor = <3000>;            /* 速く回した時は最大3.0倍まで加速 */
+        speed-threshold = <150>;        /* 加速開始の速度しきい値(counts/sec) */
+        speed-max = <1500>;             /* 最大倍率に到達する速度 */
+        acceleration-exponent = <2>;    /* 2次曲線加速度 */
         track-remainders;               /* 端数を持ち越して滑らかに移動 */
     };
 
@@ -135,7 +136,7 @@
         mode = <1>; /* 4方向モード (1: 4-directional) */
         /* 方向順: 右, 左, 下, 上 */
         bindings = <&kp RIGHT_ARROW>, <&kp LEFT_ARROW>, <&kp DOWN_ARROW>, <&kp UP_ARROW>;
-        tick = <120>; /* 【設定2: 感度】120カウント回すごとに矢印キーを1回発火（速度を大幅に落ち着かせる） */
+        tick = <40>; /* 【設定2: 感度】40カウントで1文字発火（1文字目がスッと出る感度） */
         track_remainders; /* 端数を繰り越して微小回転も確実に拾う */
     };
 };
@@ -161,6 +162,16 @@
         input-processors =
             <&sensor_rotation_left>,
             <&zip_x_scaler 1 30>, /* 左右movement→水平スクロール */
+            <&zip_y_scaler 0 1>,  /* 上下movementは無効化 */
+            <&zip_xy_to_scroll_mapper>;
+    };
+
+    /* 【新機能】Qキー長押し(layer_9)中、左手トラボを上下から左右スクロールへ切り替え */
+    hscroller {
+        layers = <9>;
+        input-processors =
+            <&scroll_accel_left>, /* 加速度プロセッサを適用 */
+            <&zip_x_scaler 1 36>, /* 左右movement→水平スクロール（縦スクロールと同等の感度） */
             <&zip_y_scaler 0 1>,  /* 上下movementは無効化 */
             <&zip_xy_to_scroll_mapper>;
     };
@@ -206,17 +217,19 @@
         layers = <8>;
         input-processors =
             <&sensor_rotation_right>,  /* 右手トラボの物理回転補正 */
-            <&cursor_text_accel>,      /* 【設定3】暴走抑制＆初動調整 */
+            <&cursor_text_accel>,      /* 【設定3】暴走抑制＆初動調整＆加速度 */
             <&tb_to_arrows>,           /* 矢印キー（↑ ↓ ← →）を送出（感度はtb_to_arrowsのtickで設定） */
-            <&zip_x_scaler 0 1>,       /* X軸のマウスポインタ移動を完全にゼロ化 */
-            <&zip_y_scaler 0 1>;       /* Y軸のマウスポインタ移動を完全にゼロ化（画面のマウスカーソルは動かさない） */
+            <&zip_xy_to_scroll_mapper>,/* マウスXY移動をスクロールに変換（マウスカーソルを完全消去） */
+            <&zip_scroll_scaler 0 1>;  /* スクロール量もゼロ化（画面スクロールも完全に消去） */
     };
 };
 
 &zip_temp_layer {
     excluded-positions = <
+        0
         7
         8
+        22
         34
     >;
 };
