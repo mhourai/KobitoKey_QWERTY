@@ -38,6 +38,19 @@
 &mkp_input_listener { input-processors = <&zip_temp_layer 3 5000>; };
 
 / {
+    macros {
+        /* 現在アクティブなプロファイルに関わらず、BLE通信を一度リセット・再接続するマクロ */
+        bt_reconnect: bt_reconnect {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            wait-ms = <100>;
+            bindings
+                = <&bt BT_NXT>             /* 次のプロファイルへ切り替えて現通信を切断 */
+                , <&macro_wait_time 100>   /* 100ms 待機 */
+                , <&bt BT_PRV>;            /* 元のプロファイルへ戻して再接続を要求 */
+        };
+    };
+
     behaviors {
         /* Positional Hold-Tap: 反対の手のキーが押された時だけホールド判定する。
            同じ手でのロール入力時の誤ホールド（誤Shift・誤レイヤー）を防止する。
@@ -127,6 +140,18 @@
             tapping-term-ms = <200>;
             bindings = <&hmr RSHIFT MINUS>, <&sk RSHFT>;
         };
+
+        /* position 30 (左下一番端のWindowsキー) 用:
+           通常タップ時は LEFT_GUI、1秒以上じーっと長押しした時だけ BLE再接続マクロを発動。
+           tap-preferred により、Win+E などのショートカット操作中は長押しにならず誤爆を防ぐ。 */
+
+        gui_bt_reset: gui_bt_reset {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <1000>;
+            bindings = <&bt_reconnect>, <&kp>;
+        };
     };
 
     combos {
@@ -167,7 +192,7 @@
 &kp Q              &kp W      &kp E        &kp R              &kp T                 &kp Y              &kp U              &kp I             &kp O             &kp P
 &hml LEFT_SHIFT A  &kp S      &hml_lt 5 D  &hml_lt 2 F        &kp G                 &kp H              &kp J              &kp K             &kp L             &td_rshift_minus
 &hml LEFT_SHIFT Z  &kp X      &kp C        &kp V              &kp B                 &kp N              &kp M              &kp COMMA         &kp DOT           &hmr LEFT_SHIFT SLASH
-&kp LEFT_GUI       &kp SPACE  &kp LCTRL    &hml LEFT_ALT TAB  &mt LEFT_SHIFT GRAVE  &lt_thumb 2 ENTER  &lt_thumb 1 SPACE  &mt SPACE DELETE  &td_sticky_shift  &hmr LALT SLASH
+&gui_bt_reset 0 LEFT_GUI  &kp SPACE  &kp LCTRL    &hml LEFT_ALT TAB  &mt LEFT_SHIFT GRAVE  &lt_thumb 2 ENTER  &lt_thumb 1 SPACE  &mt SPACE DELETE  &td_sticky_shift  &hmr LALT SLASH
             >;
         };
 
