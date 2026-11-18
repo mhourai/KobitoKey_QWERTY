@@ -1,4 +1,5 @@
 #include "kobitokey.dtsi"
+#include <dt-bindings/zmk/keys.h>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 #include <input/processors.dtsi>
 #include <input/processors/sensor_rotation.dtsi>
@@ -107,13 +108,13 @@
     };
 
     /* =========================================================================
-     * 【新機能】左手トラックボール用 カーソル移動プロセッサ
+     * 【新機能】左手トラックボール用 テキストカーソル（矢印キー）移動プロセッサ
      *
      * 【設定3: 初動しきい値 / 初期移動値】
      * - min-factor: 初動・低速時の感度倍率（1000 = 等倍）。
-     *   除数で全体を下げつつ、初動が重くならないようここで底上げできます。
+     *   最初の1文字目を動かす際に重くなりすぎないよう、ここで初動倍率を調整できます。
      * - speed-threshold: この速度(counts/sec)から加速を開始。
-     *   微細な手のブレによる誤反応を防ぐデッドゾーン的なしきい値として機能します。
+     *   手の微細なブレによる誤打鍵を防ぐしきい値として機能します。
      * ========================================================================= */
     cursor_left_accel: cursor_left_accel {
         compatible = "zmk,input-processor-acceleration";
@@ -121,11 +122,19 @@
         status = "okay";
         input-type = <INPUT_EV_REL>;
         min-factor = <1000>;            /* 初動・低速時の倍率(=1.0倍) */
-        max-factor = <2500>;            /* 高速時の最大倍率(=2.5倍) */
-        speed-threshold = <300>;        /* 加速開始の速度しきい値(counts/sec) */
-        speed-max = <3000>;             /* 最大倍率に到達する速度 */
+        max-factor = <2500>;            /* 速く回した時の最大倍率(=2.5倍) */
+        speed-threshold = <200>;        /* 加速開始の速度しきい値(counts/sec) */
+        speed-max = <2500>;             /* 最大倍率に到達する速度 */
         acceleration-exponent = <1>;    /* 1=線形 2=二次 */
         track-remainders;               /* 端数を持ち越して滑らかに移動 */
+    };
+
+    /* トラックボールの移動量を矢印キー（↑ ↓ ← →）に変換するキーバインドプロセッサ */
+    tb_to_arrows: tb_to_arrows {
+        compatible = "zettaface,input-processor-keybind";
+        #input-processor-cells = <0>;
+        mode = <1>; /* 4方向モード (Up, Down, Left, Right) */
+        bindings = <&kp UP_ARROW>, <&kp DOWN_ARROW>, <&kp LEFT_ARROW>, <&kp RIGHT_ARROW>;
     };
 };
 
@@ -156,18 +165,20 @@
 
     /* =========================================================================
      * 【設定1: どちらのトラックボールを使うか】
-     * 現在は「左手トラックボール(&tb_left_listener)」にカーソルモードを割り当てています。
+     * 現在は「左手トラックボール(&tb_left_listener)」にテキストカーソルモードを割り当てています。
      * （※右手に切り替える場合は、この cursor_mode ブロックを &tb_right_listener 内へ移動）
      *
      * left_cursorレイヤー(8: レイヤー0でSキー押下中)がアクティブな間、
-     * 左手トラックボールをマウスカーソル操作モードとして動作させます。
+     * 左手トラックボールを矢印キー（テキスト入力カーソル移動）として動作させます。
      * ========================================================================= */
     cursor_mode {
         layers = <8>;
         input-processors =
             <&sensor_rotation_left>,   /* 左手トラボの物理傾き補正 */
-            <&cursor_left_accel>,      /* 【設定3】初動しきい値＆加速プロセッサ */
-            <&zip_xy_scaler 1 4>;      /* 【設定2: 感度変換値】トラボ移動距離に対するカーソル移動距離の比率（分子 1 / 分母 4） */
+            <&cursor_left_accel>,      /* 【設定3】初動しきい値＆加速（初動応答性の調整） */
+            <&zip_xy_scaler 1 25>,     /* 【設定2: 感度】移動量に対する文字送り速度（例: 25カウントで1文字） */
+            <&tb_to_arrows>,           /* 矢印キー（↑ ↓ ← →）を送出 */
+            <&zip_xy_scaler 0 1>;      /* マウスポインタ自体の移動をゼロ化（画面のマウスカーソルは動かさない） */
     };
 };
 
