@@ -131,10 +131,13 @@
 
     /* トラックボールの移動量を矢印キー（↑ ↓ ← →）に変換するキーバインドプロセッサ */
     tb_to_arrows: tb_to_arrows {
-        compatible = "zettaface,input-processor-keybind";
+        compatible = "zmk,input-processor-keybind";
         #input-processor-cells = <0>;
-        mode = <1>; /* 4方向モード (Up, Down, Left, Right) */
-        bindings = <&kp UP_ARROW>, <&kp DOWN_ARROW>, <&kp LEFT_ARROW>, <&kp RIGHT_ARROW>;
+        mode = <1>; /* 4方向モード (1: 4-directional) */
+        /* 方向順: 右, 左, 下, 上 */
+        bindings = <&kp RIGHT_ARROW>, <&kp LEFT_ARROW>, <&kp DOWN_ARROW>, <&kp UP_ARROW>;
+        tick = <30>; /* 【設定2: 感度】30カウント回すごとに矢印キーを1回発火 */
+        track_remainders; /* 端数を繰り越して微小回転も確実に拾う */
     };
 };
 
@@ -176,8 +179,7 @@
         input-processors =
             <&sensor_rotation_left>,   /* 左手トラボの物理傾き補正 */
             <&cursor_left_accel>,      /* 【設定3】初動しきい値＆加速（初動応答性の調整） */
-            <&zip_xy_scaler 1 25>,     /* 【設定2: 感度】移動量に対する文字送り速度（例: 25カウントで1文字） */
-            <&tb_to_arrows>,           /* 矢印キー（↑ ↓ ← →）を送出 */
+            <&tb_to_arrows>,           /* 矢印キー（↑ ↓ ← →）を送出（感度はtb_to_arrowsのtickで設定） */
             <&zip_xy_scaler 0 1>;      /* マウスポインタ自体の移動をゼロ化（画面のマウスカーソルは動かさない） */
     };
 };
