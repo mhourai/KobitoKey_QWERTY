@@ -153,11 +153,11 @@
             bindings = <&bt_reconnect>, <&kp>;
         };
 
-        /* position 11 (レイヤー0のSキー) 用:
-           通常タップ時は文字「S」、1秒弱(800ms)長押しした時だけレイヤー8（左手トラボカーソル）を発動。
-           tap-preferred により、通常のタイピング中は即座に文字「S」として送出され誤爆を防ぐ。 */
+        /* position 22 (レイヤー0のCキー) 用:
+           通常タップ時は文字「C」、1秒弱(800ms)長押しした時だけレイヤー8（右手トラボのテキストカーソル）を発動。
+           tap-preferred により、通常のタイピング中は即座に文字「C」として送出され誤爆を防ぐ。 */
 
-        lt_cursor_s: layer_tap_cursor_s {
+        lt_cursor_c: layer_tap_cursor_c {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "tap-preferred";
@@ -203,8 +203,8 @@
         default_layer {
             bindings = <
 &kp Q              &kp W                 &kp E        &kp R              &kp T                 &kp Y              &kp U              &kp I             &kp O             &kp P
-&hml LEFT_SHIFT A  &lt_cursor_s 8 S      &hml_lt 5 D  &hml_lt 2 F        &kp G                 &kp H              &kp J              &kp K             &kp L             &td_rshift_minus
-&hml LEFT_SHIFT Z  &kp X                 &kp C        &kp V              &kp B                 &kp N              &kp M              &kp COMMA         &kp DOT           &hmr LEFT_SHIFT SLASH
+&hml LEFT_SHIFT A  &kp S                 &hml_lt 5 D  &hml_lt 2 F        &kp G                 &kp H              &kp J              &kp K             &kp L             &td_rshift_minus
+&hml LEFT_SHIFT Z  &kp X                 &lt_cursor_c 8 C  &kp V         &kp B                 &kp N              &kp M              &kp COMMA         &kp DOT           &hmr LEFT_SHIFT SLASH
 &gui_bt_reset 0 LEFT_GUI  &kp SPACE  &kp LCTRL    &hml LEFT_ALT TAB  &mt LEFT_SHIFT GRAVE  &lt_thumb 2 ENTER  &lt_thumb 1 SPACE  &mt SPACE DELETE  &td_sticky_shift  &hmr LALT SLASH
             >;
         };
