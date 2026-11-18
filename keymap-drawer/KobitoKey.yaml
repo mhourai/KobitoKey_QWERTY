@@ -12,7 +12,7 @@ layers:
   - O
   - P
   - {t: A, h: LEFT SHIFT}
-  - S
+  - {t: S, h: left_cursor}
   - {t: D, h: '5'}
   - {t: F, h: arrow}
   - G
@@ -53,7 +53,7 @@ layers:
   - '0x89'
   - BACKSPACE
   - '&'
-  - {t: '%', h: left_cursor}
+  - '%'
   - ^
   - '*'
   - (
@@ -365,7 +365,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {type: held}
+  - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
